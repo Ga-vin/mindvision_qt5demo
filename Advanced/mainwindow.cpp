@@ -2,6 +2,12 @@
 #include "ui_mainwindow.h"
 #include "capturethread.h"
 #include <stdio.h>
+#include <QTimer>
+#include <QGraphicsItem>
+#include <QTextCodec>
+#include <QFileDialog>
+
+
 
 #ifdef _WIN64
 #pragma comment(lib,"../MVCAMSDK_X64.lib")
@@ -283,7 +289,7 @@ int  MainWindow::GUI_init_Resolution(int hCamera,tSdkCameraCapbility * pCameraIn
 
 
 	//windows 编码
-	QTextCodec::setCodecForCStrings(QTextCodec::codecForName("GB2312"));
+//	QTextCodec::setCodecForCStrings(QTextCodec::codecForName("GB2312"));
 //		QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
     for(i=0;i<iImageSizeDesc;i++){
         ui->res_combobox->addItem(QString("%1").arg(pImageSizeDesc[i].acDescription));
@@ -602,7 +608,7 @@ int  MainWindow::GUI_init_speed(int hCamera,tSdkCameraCapbility * pCameraInfo)
     int         i,size=pCameraInfo->iFrameSpeedDesc;
 
 	//windows 编码
-	QTextCodec::setCodecForCStrings(QTextCodec::codecForName("GB2312"));
+//	QTextCodec::setCodecForCStrings(QTextCodec::codecForName("GB2312"));
     for(i=0;i<size;i++){
         radioButton_speed[i] = new QRadioButton(QString("%1").arg(pCameraInfo->pFrameSpeedDesc[i].acDescription) ,ui->groupBox_speed);
         radioButton_speed[i]->setGeometry(QRect(10+(i*80), 5, 80, 30));
@@ -1123,7 +1129,7 @@ void MainWindow::on_pushButton_para_load_released()
 {
     QFileDialog *fileDialog = new QFileDialog(this);
     fileDialog->setWindowTitle(tr("Select file"));
-    fileDialog->setFilter(tr("config Files(*.config )"));
+    fileDialog->setNameFilter(tr("config Files(*.config )"));
     if(fileDialog->exec() == QDialog::Accepted) {
         QString path = fileDialog->selectedFiles()[0];
         //QMessageBox::information(NULL, tr("Path"), tr("You selected ") + path);

@@ -2,12 +2,13 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QtGui>
 #include "capturethread.h"
-
-
 #include <windows.h>
 #include "CameraApi.h"
+
+#include <QLabel>
+#include <QGraphicsScene>
+#include <QRadioButton>
 
 typedef struct _WIDTH_HEIGHT{
     int     display_width;
